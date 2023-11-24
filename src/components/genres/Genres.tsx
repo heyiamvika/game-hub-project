@@ -1,10 +1,15 @@
-import { HStack, Heading } from "@chakra-ui/react";
+import { Heading, VStack } from "@chakra-ui/react";
+import GenreItem from "./GenreItem";
 
 const Genres = () => {
   return (
-    <HStack hideBelow="md">
+    <VStack hideBelow="md">
       <Heading fontSize={26}>Genres</Heading>
-    </HStack>
+      <VStack as="ul">
+        {/* TO_DO: loop over genres */}
+        <GenreItem />
+      </VStack>
+    </VStack>
   );
 };
 
