@@ -31,7 +31,13 @@ const GameCard = ({
         <Stack mt="6" spacing="3">
           <HStack>
             {/* TO-DO: make a separate component + set color depending on the critic */}
-            <Badge colorScheme="green" fontWeight="bold" fontSize="md">
+            <Badge
+              colorScheme="green"
+              fontWeight="bold"
+              fontSize="md"
+              px={2}
+              borderRadius="md"
+            >
               {metacritic}
             </Badge>
           </HStack>
