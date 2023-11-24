@@ -1,4 +1,4 @@
-import { Game } from "../types/games";
+import { Game } from "../../types/games";
 import {
   Card,
   CardBody,
@@ -7,7 +7,6 @@ import {
   Heading,
   Icon,
   HStack,
-  Flex,
   VStack,
 } from "@chakra-ui/react";
 import {} from "@chakra-ui/icons";
@@ -20,7 +19,7 @@ const GameCard = ({
   game: { name, background_image, rating_top, metacritic },
 }: Props) => {
   return (
-    <Card maxW="sm" borderRadius="lg" variant="filled">
+    <Card maxW={300} borderRadius={10} variant="filled" overflow="hidden">
       <Image
         objectFit="cover"
         src={background_image}
@@ -28,7 +27,7 @@ const GameCard = ({
       />
       <CardBody>
         <VStack align="left">
-          <Flex justify="space-between">
+          <HStack justify="space-between">
             {/* TO-DO: make a separate component */}
             <HStack>
               <Icon></Icon>
@@ -47,7 +46,7 @@ const GameCard = ({
             >
               {metacritic}
             </Badge>
-          </Flex>
+          </HStack>
           <Heading>{name}</Heading>
           {/* TO-DO: make a separate component + set icon depending on the rating */}
           <Icon />

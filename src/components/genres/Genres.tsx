@@ -15,7 +15,9 @@ const Genres = ({ genres, onGenreClick }: Props) => {
 
   return (
     <VStack hideBelow="md" alignItems="flex-start">
-      <Heading fontSize={24}>Genres</Heading>
+      <Heading fontSize={24} mt={5}>
+        Genres
+      </Heading>
       <VStack as="ul" alignItems="flex-start">
         {genresItems}
       </VStack>

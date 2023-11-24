@@ -4,7 +4,7 @@ import "./App.css";
 import { CanceledError } from "./services/api-client";
 import gamesService from "./services/games-service";
 
-import { VStack, HStack } from "@chakra-ui/react";
+import { VStack, HStack, Box } from "@chakra-ui/react";
 import { Game } from "./types/games";
 import { Genre } from "./types/genres";
 
@@ -45,14 +45,18 @@ function App() {
 
   return (
     <>
-      <VStack alignItems="stretch" pl={5}>
+      <VStack pl={5}>
         <Header />
-        <HStack>
-          <Genres genres={genres} onGenreClick={onSelectGenre} />
-          <GamesContainer
-            selectedGenre={selectedGenre ? selectedGenre.name : ""}
-          />
-          {/* <Games games={games} /> */}
+        <HStack align="flex-start">
+          <Box flex={1}>
+            <Genres genres={genres} onGenreClick={onSelectGenre} />
+          </Box>
+          <Box flex={7}>
+            <GamesContainer
+              selectedGenre={selectedGenre ? selectedGenre.name : ""}
+              games={games}
+            />
+          </Box>
         </HStack>
       </VStack>
     </>

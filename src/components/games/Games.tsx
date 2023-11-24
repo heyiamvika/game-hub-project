@@ -1,7 +1,7 @@
 import { Wrap, WrapItem } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 
-import { Game } from "../types/games";
+import { Game } from "../../types/games";
 
 interface Props {
   games: Game[];

@@ -5,7 +5,7 @@ import ModeSwitch from "./ModeSwitch";
 
 const Header = () => {
   return (
-    <HStack justifyContent="space-between" alignItems="center" py={5}>
+    <HStack justifyContent="space-between" alignItems="center" w="100%" py={5}>
       <Icon />
       <Search />
       <ModeSwitch />
