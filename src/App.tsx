@@ -39,9 +39,20 @@ function App() {
     return () => cancel();
   }, []);
 
-  const onSelectGenre = ({ id, name, slug, image_background }: Genre) => {
+  useEffect(() => {
+    const { request, cancel } = selectedGenre
+      ? gamesService.getGamesByGenre(selectedGenre.slug)
+      : gamesService.getAllGames();
+
+    request
+      .then((res) => setGames(res.data.results))
+      .catch((err) => processError(err));
+
+    return () => cancel();
+  }, [selectedGenre]);
+
+  const onSelectGenre = ({ id, name, slug, image_background }: Genre) =>
     setSelectedGenre({ id, name, slug, image_background });
-  };
 
   return (
     <>
