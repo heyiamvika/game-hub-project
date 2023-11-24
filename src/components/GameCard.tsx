@@ -9,6 +9,7 @@ import {
   Stack,
   Heading,
   Icon,
+  HStack,
 } from "@chakra-ui/react";
 import {} from "@chakra-ui/icons";
 
@@ -28,10 +29,12 @@ const GameCard = ({
       />
       <CardBody>
         <Stack mt="6" spacing="3">
-          {/* TO-DO: make a separate component + set color depending on the critic */}
-          <Badge colorScheme="green" fontWeight="bold" fontSize="md">
-            {metacritic}
-          </Badge>
+          <HStack>
+            {/* TO-DO: make a separate component + set color depending on the critic */}
+            <Badge colorScheme="green" fontWeight="bold" fontSize="md">
+              {metacritic}
+            </Badge>
+          </HStack>
           <Heading>{name}</Heading>
           {/* TO-DO: make a separate component + set icon depending on the rating */}
           <Icon />

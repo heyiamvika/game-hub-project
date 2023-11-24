@@ -1,5 +1,7 @@
-import { Game } from "../types/games";
+import { Wrap, WrapItem } from "@chakra-ui/react";
 import GameCard from "./GameCard";
+
+import { Game } from "../types/games";
 
 interface Props {
   games: Game[];
@@ -7,11 +9,13 @@ interface Props {
 
 const Games = ({ games }: Props) => {
   return (
-    <>
+    <Wrap>
       {games.map((game) => (
-        <GameCard game={game} key={game.id} />
+        <WrapItem key={game.id}>
+          <GameCard game={game} />
+        </WrapItem>
       ))}
-    </>
+    </Wrap>
   );
 };
 
