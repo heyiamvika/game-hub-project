@@ -12,15 +12,17 @@ import {
 } from "@chakra-ui/react";
 import {} from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
+import RatingIcon from "./RatingIcon";
 
 interface Props {
   game: Game;
 }
 
-const GameCard = ({
-  game: { name, background_image, rating_top, metacritic },
-}: Props) => {
+const GameCard = ({ game }: Props) => {
   const [isLoaded, setIsLoaded] = useState(false);
+
+  console.log(game);
+  const { name, background_image, rating_top, metacritic } = game;
 
   useEffect(() => {
     if (!background_image) return;
@@ -58,9 +60,10 @@ const GameCard = ({
                 {metacritic}
               </Badge>
             </HStack>
-            <Heading>{name}</Heading>
-            {/* TO-DO: make a separate component + set icon depending on the rating */}
-            <Icon />
+            <Heading fontSize={25}>
+              {name}
+              <RatingIcon rating={rating_top} />
+            </Heading>
           </VStack>
         </CardBody>
       </Skeleton>
