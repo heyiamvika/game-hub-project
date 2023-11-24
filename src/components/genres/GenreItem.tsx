@@ -2,11 +2,12 @@ import { HStack, Image, Link } from "@chakra-ui/react";
 import { Genre } from "../../types/genres";
 
 interface Props {
+  isSelected: boolean;
   genre: Genre;
   onGenreClick: (genre: Genre) => void;
 }
 
-const GenreItem = ({ genre, onGenreClick }: Props) => {
+const GenreItem = ({ isSelected, genre, onGenreClick }: Props) => {
   const { name, image_background } = genre;
   return (
     <HStack as="li">
@@ -16,7 +17,12 @@ const GenreItem = ({ genre, onGenreClick }: Props) => {
         objectFit="cover"
         borderRadius={5}
       />
-      <Link onClick={() => onGenreClick(genre)}>{name}</Link>
+      <Link
+        onClick={() => onGenreClick(genre)}
+        fontWeight={isSelected ? "bold" : "normal"}
+      >
+        {name}
+      </Link>
     </HStack>
   );
 };

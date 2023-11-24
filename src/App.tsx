@@ -64,7 +64,11 @@ function App() {
         <Header onSearch={onSearch} />
         <HStack align="flex-start">
           <Box flex={1}>
-            <Genres genres={genres} onGenreClick={onSelectGenre} />
+            <Genres
+              selectedGenre={selectedGenre}
+              genres={genres}
+              onGenreClick={onSelectGenre}
+            />
           </Box>
           <Box flex={7}>
             <GamesContainer
