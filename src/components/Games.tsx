@@ -1,5 +1,5 @@
-import { Game } from "../../types/games";
-import GameCard from "../GameCard/GameCard";
+import { Game } from "../types/games";
+import GameCard from "./GameCard";
 
 interface Props {
   games: Game[];
@@ -7,11 +7,11 @@ interface Props {
 
 const Games = ({ games }: Props) => {
   return (
-    <div>
+    <>
       {games.map((game) => (
         <GameCard game={game} key={game.id} />
       ))}
-    </div>
+    </>
   );
 };
 

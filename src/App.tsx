@@ -3,7 +3,7 @@ import "./App.css";
 import { CanceledError } from "./services/api-client";
 import gamesService from "./services/games-service";
 import { Game } from "./types/games";
-import Games from "./components/Games/Games";
+import Games from "./components/Games";
 
 function App() {
   const [games, setGames] = useState<Game[]>([]);
