@@ -17,18 +17,14 @@ function App() {
   const [games, setGames] = useState<Game[]>([]);
   const [genres, setGenres] = useState<Genre[]>([]);
 
+  const [selectedGenre, setSelectedGenre] = useState<Genre>();
+
   useEffect(() => {
     const { request, cancel } = gamesService.getAllGames();
 
     request
-      .then((res) => {
-        setGames(res.data.results);
-      })
-      .catch((err) => {
-        // Don't show error is user closed the tab or connection was interrupted
-        if (err instanceof CanceledError) return;
-        console.error("Failed to fetch games: " + err.message);
-      });
+      .then((res) => setGames(res.data.results))
+      .catch((err) => processError(err));
 
     return () => cancel();
   }, []);
@@ -37,30 +33,36 @@ function App() {
     const { request, cancel } = genresService.getAllGenres();
 
     request
-      .then((res) => {
-        setGenres(res.data.results);
-      })
-      .catch((err) => {
-        // Don't show error is user closed the tab or connection was interrupted
-        if (err instanceof CanceledError) return;
-        console.error("Failed to fetch genres: " + err.message);
-      });
+      .then((res) => setGenres(res.data.results))
+      .catch((err) => processError(err));
 
     return () => cancel();
   }, []);
+
+  const onSelectGenre = ({ id, name, slug, image_background }: Genre) => {
+    setSelectedGenre({ id, name, slug, image_background });
+  };
 
   return (
     <>
       <VStack alignItems="stretch" pl={5}>
         <Header />
         <HStack>
-          <Genres />
-          <GamesContainer />
+          <Genres genres={genres} onGenreClick={onSelectGenre} />
+          <GamesContainer
+            selectedGenre={selectedGenre ? selectedGenre.name : ""}
+          />
           {/* <Games games={games} /> */}
         </HStack>
       </VStack>
     </>
   );
 }
+
+const processError = (err: any) => {
+  // Don't show error is user closed the tab or connection was interrupted
+  if (err instanceof CanceledError) return;
+  console.error("Failed to fetch: " + err.message);
+};
 
 export default App;

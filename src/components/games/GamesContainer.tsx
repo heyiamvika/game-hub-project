@@ -2,10 +2,16 @@
 
 import { HStack, VStack, Box, Heading } from "@chakra-ui/react";
 
-const GamesContainer = () => {
+interface Props {
+  selectedGenre: string;
+}
+
+const GamesContainer = ({ selectedGenre }: Props) => {
   return (
     <Box>
-      <Heading fontSize={52}>Games</Heading>
+      <Heading fontSize={52}>{`${selectedGenre}${
+        selectedGenre && " "
+      }Games`}</Heading>
     </Box>
   );
 };

@@ -1,13 +1,23 @@
 import { Heading, VStack } from "@chakra-ui/react";
 import GenreItem from "./GenreItem";
 
-const Genres = () => {
+import { Genre } from "../../types/genres";
+
+interface Props {
+  genres: Genre[];
+  onGenreClick: (genre: Genre) => void;
+}
+
+const Genres = ({ genres, onGenreClick }: Props) => {
+  const genresItems = genres.map((genre) => (
+    <GenreItem genre={genre} key={genre.id} onGenreClick={onGenreClick} />
+  ));
+
   return (
-    <VStack hideBelow="md">
-      <Heading fontSize={26}>Genres</Heading>
-      <VStack as="ul">
-        {/* TO_DO: loop over genres */}
-        <GenreItem />
+    <VStack hideBelow="md" alignItems="flex-start">
+      <Heading fontSize={24}>Genres</Heading>
+      <VStack as="ul" alignItems="flex-start">
+        {genresItems}
       </VStack>
     </VStack>
   );

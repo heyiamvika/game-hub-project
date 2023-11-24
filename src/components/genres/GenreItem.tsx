@@ -1,11 +1,23 @@
-import { Image, Text, VStack } from "@chakra-ui/react";
+import { HStack, Image, Link } from "@chakra-ui/react";
+import { Genre } from "../../types/genres";
 
-const GenreItem = () => {
+interface Props {
+  genre: Genre;
+  onGenreClick: (genre: Genre) => void;
+}
+
+const GenreItem = ({ genre, onGenreClick }: Props) => {
+  const { name, image_background } = genre;
   return (
-    <VStack as="li">
-      <Image />
-      <Text>Name</Text>
-    </VStack>
+    <HStack as="li">
+      <Image
+        src={image_background}
+        boxSize="30px"
+        objectFit="cover"
+        borderRadius={5}
+      />
+      <Link onClick={() => onGenreClick(genre)}>{name}</Link>
+    </HStack>
   );
 };
 
