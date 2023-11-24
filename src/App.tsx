@@ -32,7 +32,7 @@ function App() {
 
   return (
     <>
-      <VStack alignItems="stretch" p={5}>
+      <VStack alignItems="stretch" pl={5}>
         <Header />
         <HStack>
           <Genres />

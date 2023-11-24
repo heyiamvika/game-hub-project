@@ -1,12 +1,14 @@
-import { HStack, Box } from "@chakra-ui/react";
+import { HStack, Icon } from "@chakra-ui/react";
+
 import Search from "./Search";
+import ModeSwitch from "./ModeSwitch";
 
 const Header = () => {
   return (
-    <HStack justifyContent="space-between" alignItems="center">
-      <Box>Icon</Box>
+    <HStack justifyContent="space-between" alignItems="center" py={5}>
+      <Icon />
       <Search />
-      <Box>Mode</Box>
+      <ModeSwitch />
     </HStack>
   );
 };
