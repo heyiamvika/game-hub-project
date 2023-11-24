@@ -5,7 +5,6 @@ import {
   Image,
   Badge,
   Heading,
-  Icon,
   HStack,
   VStack,
   Skeleton,
@@ -13,6 +12,7 @@ import {
 import {} from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
 import RatingIcon from "./RatingIcon";
+import Platforms from "./Platforms";
 
 interface Props {
   game: Game;
@@ -21,8 +21,8 @@ interface Props {
 const GameCard = ({ game }: Props) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  console.log(game);
-  const { name, background_image, rating_top, metacritic } = game;
+  const { name, background_image, rating_top, metacritic, parent_platforms } =
+    game;
 
   useEffect(() => {
     if (!background_image) return;
@@ -41,15 +41,7 @@ const GameCard = ({ game }: Props) => {
         <CardBody>
           <VStack align="left">
             <HStack justify="space-between">
-              {/* TO-DO: make a separate component */}
-              <HStack>
-                <Icon></Icon>
-                <Icon></Icon>
-                <Icon></Icon>
-                <Icon></Icon>
-                <Icon></Icon>
-              </HStack>
-              {/* TO-DO: make a separate component + set color depending on the critic */}
+              <Platforms platforms={parent_platforms} />
               <Badge
                 colorScheme="green"
                 fontWeight="bold"
