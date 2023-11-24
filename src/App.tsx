@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+
 import { CanceledError } from "./services/api-client";
 import gamesService from "./services/games-service";
-import { Game } from "./types/games";
+
 import Games from "./components/Games";
+
+import { HStack, VStack, Box } from "@chakra-ui/react";
+
+import { Game } from "./types/games";
 
 function App() {
   const [games, setGames] = useState<Game[]>([]);
@@ -26,7 +31,17 @@ function App() {
 
   return (
     <>
-      <Games games={games} />
+      <VStack>
+        <HStack>
+          <Box>Icon</Box>
+          <Box>Search</Box>
+          <Box>Mode</Box>
+        </HStack>
+        <HStack>
+          <Box>Genres</Box>
+          <Games games={games} />
+        </HStack>
+      </VStack>
     </>
   );
 }
