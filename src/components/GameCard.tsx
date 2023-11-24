@@ -2,14 +2,13 @@ import { Game } from "../types/games";
 import {
   Card,
   CardBody,
-  CardFooter,
   Image,
   Badge,
-  Text,
-  Stack,
   Heading,
   Icon,
   HStack,
+  Flex,
+  VStack,
 } from "@chakra-ui/react";
 import {} from "@chakra-ui/icons";
 
@@ -28,8 +27,16 @@ const GameCard = ({
         alt="Green double couch with wooden legs"
       />
       <CardBody>
-        <Stack mt="6" spacing="3">
-          <HStack>
+        <VStack align="left">
+          <Flex justify="space-between">
+            {/* TO-DO: make a separate component */}
+            <HStack>
+              <Icon></Icon>
+              <Icon></Icon>
+              <Icon></Icon>
+              <Icon></Icon>
+              <Icon></Icon>
+            </HStack>
             {/* TO-DO: make a separate component + set color depending on the critic */}
             <Badge
               colorScheme="green"
@@ -40,11 +47,11 @@ const GameCard = ({
             >
               {metacritic}
             </Badge>
-          </HStack>
+          </Flex>
           <Heading>{name}</Heading>
           {/* TO-DO: make a separate component + set icon depending on the rating */}
           <Icon />
-        </Stack>
+        </VStack>
       </CardBody>
     </Card>
   );
