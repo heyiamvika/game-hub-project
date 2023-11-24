@@ -54,10 +54,14 @@ function App() {
   const onSelectGenre = ({ id, name, slug, image_background }: Genre) =>
     setSelectedGenre({ id, name, slug, image_background });
 
+  const onSearch = (value: string) => {
+    console.log(value);
+  };
+
   return (
     <>
       <VStack pl={5}>
-        <Header />
+        <Header onSearch={onSearch} />
         <HStack align="flex-start">
           <Box flex={1}>
             <Genres genres={genres} onGenreClick={onSelectGenre} />
