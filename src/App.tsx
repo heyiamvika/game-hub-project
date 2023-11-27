@@ -5,19 +5,17 @@ import { CanceledError } from "./services/api-client";
 import gamesService from "./services/games-service";
 
 import { VStack, HStack, Box, useColorMode } from "@chakra-ui/react";
-import { Game, Platform } from "./types/games";
+import { Game } from "./types/games";
 import { Genre } from "./types/genres";
 
 import Header from "./components/header/Header";
 import Genres from "./components/genres/Genres";
 import GamesContainer from "./components/games/GamesContainer";
 import genresService from "./services/genres-service";
-import platformsService from "./services/platforms-service";
 
 function App() {
   const [games, setGames] = useState<Game[]>([]);
   const [genres, setGenres] = useState<Genre[]>([]);
-  const [platforms, setPlatforms] = useState<Platform[]>([]);
   const [selectedGenre, setSelectedGenre] = useState<Genre>();
 
   const { colorMode, toggleColorMode } = useColorMode();
@@ -39,16 +37,6 @@ function App() {
 
     request
       .then((res) => setGenres(res.data.results))
-      .catch((err) => processError(err));
-
-    return () => cancel();
-  }, []);
-
-  useEffect(() => {
-    const { request, cancel } = platformsService.getAllPlatforms();
-
-    request
-      .then((res) => setPlatforms(res.data.results))
       .catch((err) => processError(err));
 
     return () => cancel();
@@ -87,7 +75,6 @@ function App() {
           </Box>
           <Box flex={7}>
             <GamesContainer
-              platforms={platforms}
               selectedGenre={selectedGenre ? selectedGenre.name : ""}
               games={games}
             />

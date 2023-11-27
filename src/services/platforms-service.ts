@@ -1,5 +1,6 @@
 import apiClient from "./api-client";
 
+// TO_DO: delete if not needed
 class PlatformsService {
   getAllPlatforms() {
     const controller = new AbortController();
