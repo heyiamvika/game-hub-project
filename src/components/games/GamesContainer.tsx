@@ -1,9 +1,12 @@
 import { Heading, VStack } from "@chakra-ui/react";
-import { Game, Platform } from "../../types/games";
 import { uniqBy, flatten } from "lodash";
+import { useState } from "react";
 
-import Menu from "./Menu";
+import GeneralMenu from "./GeneralMenu";
 import Games from "./Games";
+
+import { Game } from "../../types/games";
+import { Platform } from "../../types/platforms";
 
 interface Props {
   selectedGenre: string;
@@ -11,20 +14,34 @@ interface Props {
 }
 
 const GamesContainer = ({ selectedGenre, games }: Props) => {
-  const allParentPlatforms = games.map((game) => game.parent_platforms);
-  const itemsFlat = flatten(allParentPlatforms).map(({ platform }) => ({
-    id: platform.id,
-    title: platform.name,
-  }));
-  const items = uniqBy(itemsFlat, "id");
+  const [filteredGames, setFilteredGames] = useState<Game[]>();
+
+  const items = uniqBy(
+    flatten(games.map((game) => game.parent_platforms)),
+    "platform[id]"
+  );
+
+  const onPlatformsMenuSelect = (selectedPlatform: Platform) => {
+    const filteredGames = games.filter((game) =>
+      game.parent_platforms.find(
+        ({ platform }) => platform.name === selectedPlatform.platform.name
+      )
+    );
+
+    setFilteredGames(filteredGames);
+  };
 
   return (
     <VStack alignItems="flex-start">
       <Heading fontSize={52}>{`${selectedGenre}${
         selectedGenre && " "
       }Games`}</Heading>
-      <Menu title="Platforms" items={items} />
-      <Games games={games} />
+      <GeneralMenu
+        title="Platforms"
+        items={items}
+        onSelect={onPlatformsMenuSelect}
+      />
+      <Games games={filteredGames || games} />
     </VStack>
   );
 };
