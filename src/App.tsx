@@ -4,7 +4,7 @@ import "./App.css";
 import { CanceledError } from "./services/api-client";
 import gamesService from "./services/games-service";
 
-import { VStack, HStack, Box } from "@chakra-ui/react";
+import { VStack, HStack, Box, useColorMode } from "@chakra-ui/react";
 import { Game, Platform } from "./types/games";
 import { Genre } from "./types/genres";
 
@@ -19,6 +19,10 @@ function App() {
   const [genres, setGenres] = useState<Genre[]>([]);
   const [platforms, setPlatforms] = useState<Platform[]>([]);
   const [selectedGenre, setSelectedGenre] = useState<Genre>();
+
+  const { colorMode, toggleColorMode } = useColorMode();
+
+  console.log({ colorMode, toggleColorMode });
 
   useEffect(() => {
     const { request, cancel } = gamesService.getAllGames();
