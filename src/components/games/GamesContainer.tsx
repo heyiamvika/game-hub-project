@@ -1,14 +1,16 @@
 import { Heading, VStack } from "@chakra-ui/react";
-import { Game } from "../../types/games";
+import { Game, Platform } from "../../types/games";
 
 import Games from "./Games";
 
 interface Props {
   selectedGenre: string;
   games: Game[];
+  platforms: Platform[];
 }
 
-const GamesContainer = ({ selectedGenre, games }: Props) => {
+const GamesContainer = ({ selectedGenre, games, platforms }: Props) => {
+  console.log({ platforms });
   return (
     <VStack alignItems="flex-start">
       <Heading fontSize={52}>{`${selectedGenre}${

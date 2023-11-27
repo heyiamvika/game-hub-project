@@ -7,7 +7,7 @@ interface Props {
 
 const Platforms = ({ platforms }: Props) => {
   const platformItems = platforms.map(({ platform }) => {
-    console.log(platform);
+    // console.log(platform);
     return <Icon key={platform.id}></Icon>;
   });
 
