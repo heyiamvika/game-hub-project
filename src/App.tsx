@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 
 import { CanceledError } from "./services/api-client";
 import gamesService from "./services/games-service";
 
-import { VStack, HStack, Box, useColorMode } from "@chakra-ui/react";
+import {
+  VStack,
+  HStack,
+  Box,
+  useColorMode,
+  Grid,
+  GridItem,
+  Show,
+} from "@chakra-ui/react";
 import { Game } from "./types/games";
 import { Genre } from "./types/genres";
 
@@ -63,7 +70,25 @@ function App() {
 
   return (
     <>
-      <VStack pl={5}>
+      <Grid
+        templateAreas={{
+          base: `"nav" "main"`,
+          lg: `"nav nav" "aside main"`,
+        }}
+      >
+        <GridItem area="nav" bg="coral">
+          Nav
+        </GridItem>
+        <Show above="lg">
+          <GridItem area="aside" bg="gold">
+            Aside
+          </GridItem>
+        </Show>
+        <GridItem area="main" bg="dodgerblue">
+          Main
+        </GridItem>
+      </Grid>
+      {/* <VStack pl={5}>
         <Header onSearch={onSearch} />
         <HStack align="flex-start" width="100%">
           <Box flex={1}>
@@ -80,7 +105,7 @@ function App() {
             />
           </Box>
         </HStack>
-      </VStack>
+      </VStack> */}
     </>
   );
 }
