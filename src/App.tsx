@@ -80,13 +80,9 @@ function App() {
           <NavBar onSearch={onSearch} />
         </GridItem>
         <Show above="lg">
-          <GridItem area="aside" bg="gold">
-            Aside
-          </GridItem>
+          <GridItem area="aside">Aside</GridItem>
         </Show>
-        <GridItem area="main" bg="dodgerblue">
-          Main
-        </GridItem>
+        <GridItem area="main">Main</GridItem>
       </Grid>
       {/* <VStack pl={5}>
         <HStack align="flex-start" width="100%">
