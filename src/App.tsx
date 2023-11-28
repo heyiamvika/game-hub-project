@@ -15,7 +15,7 @@ import {
 import { Game } from "./types/games";
 import { Genre } from "./types/genres";
 
-import Header from "./components/header/Header";
+import NavBar from "./components/header/NavBar";
 import Genres from "./components/genres/Genres";
 import GamesContainer from "./components/games/GamesContainer";
 import genresService from "./services/genres-service";
@@ -76,8 +76,8 @@ function App() {
           lg: `"nav nav" "aside main"`,
         }}
       >
-        <GridItem area="nav" bg="coral">
-          Nav
+        <GridItem area="nav">
+          <NavBar onSearch={onSearch} />
         </GridItem>
         <Show above="lg">
           <GridItem area="aside" bg="gold">
@@ -89,7 +89,6 @@ function App() {
         </GridItem>
       </Grid>
       {/* <VStack pl={5}>
-        <Header onSearch={onSearch} />
         <HStack align="flex-start" width="100%">
           <Box flex={1}>
             <Genres
