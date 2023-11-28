@@ -1,4 +1,4 @@
-import { Heading, VStack, Text, SimpleGrid } from "@chakra-ui/react";
+import { Text, SimpleGrid } from "@chakra-ui/react";
 import { uniqBy, flatten } from "lodash";
 import { useEffect, useState } from "react";
 
