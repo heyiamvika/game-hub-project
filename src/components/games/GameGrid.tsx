@@ -9,6 +9,7 @@ import { Game, FetchGamesResponse } from "../../types/games";
 import { Platform } from "../../types/platforms";
 
 import gamesService from "../../services/games-service";
+import useGames from "../../hooks/useGames";
 
 interface Props {
   selectedGenre: string;
@@ -16,19 +17,7 @@ interface Props {
 }
 
 const GameGrid = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    const { request, cancel } = gamesService.getAllGames();
-
-    request
-      .then((res) => setGames(res.data.results))
-      .catch((err) => setError(err.message));
-
-    return () => cancel();
-  });
-
+  const { games, error } = useGames();
   // const [filteredGames, setFilteredGames] = useState<Game[] | null>(null);
 
   // const menuItems = uniqBy(
