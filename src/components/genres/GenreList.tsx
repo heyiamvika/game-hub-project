@@ -1,7 +1,7 @@
 import { Heading, VStack } from "@chakra-ui/react";
 import GenreItem from "./GenreItem";
 
-import useGenres, { Genre } from "../../hooks/useGenres";
+import useGenres from "../../hooks/useGenres";
 
 interface Props {
   // selectedGenre: Genre | undefined;
@@ -9,7 +9,7 @@ interface Props {
 }
 
 const GenreList = ({}: Props) => {
-  const { genres } = useGenres();
+  const { data } = useGenres();
 
   // const genresItems = genres.map((genre) => {
   //   const isSelected = Boolean(selectedGenre && selectedGenre.id === genre.id);
@@ -26,7 +26,7 @@ const GenreList = ({}: Props) => {
 
   return (
     <ul>
-      {genres.map((genre) => (
+      {data.map((genre) => (
         <li key={genre.id}>{genre.name}</li>
       ))}
     </ul>
