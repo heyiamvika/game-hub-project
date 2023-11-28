@@ -4,7 +4,7 @@ import { CanceledError } from "./services/api-client";
 import gamesService from "./services/games-service";
 
 import { useColorMode, Grid, GridItem, Show } from "@chakra-ui/react";
-import { Game } from "./types/games";
+import { Game } from "./hooks/useGames";
 import { Genre } from "./types/genres";
 
 import NavBar from "./components/header/NavBar";

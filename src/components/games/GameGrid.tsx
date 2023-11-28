@@ -1,15 +1,16 @@
-import { Heading, VStack, Text } from "@chakra-ui/react";
+import { Heading, VStack, Text, SimpleGrid } from "@chakra-ui/react";
 import { uniqBy, flatten } from "lodash";
 import { useEffect, useState } from "react";
 
 import GeneralMenu from "./GeneralMenu";
 import Games from "./Games";
 
-import { Game, FetchGamesResponse } from "../../types/games";
+import { Game, FetchGamesResponse } from "../../hooks/useGames";
 import { Platform } from "../../types/platforms";
 
 import gamesService from "../../services/games-service";
 import useGames from "../../hooks/useGames";
+import GameCard from "./GameCard";
 
 interface Props {
   selectedGenre: string;
@@ -38,11 +39,15 @@ const GameGrid = () => {
   return (
     <>
       {error && <Text>{error}</Text>}
-      <ul>
+      <SimpleGrid
+        columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
+        spacing={10}
+        padding="10px"
+      >
         {games.map((game) => (
-          <li key={game.id}>{game.name}</li>
+          <GameCard key={game.id} game={game} />
         ))}
-      </ul>
+      </SimpleGrid>
     </>
   );
 };

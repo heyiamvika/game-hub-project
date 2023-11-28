@@ -1,4 +1,4 @@
-import { Game } from "../../types/games";
+import { Game } from "../../hooks/useGames";
 import {
   Card,
   CardBody,
@@ -19,46 +19,45 @@ interface Props {
 }
 
 const GameCard = ({ game }: Props) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  // const [isLoaded, setIsLoaded] = useState(false);
 
-  const { name, background_image, rating_top, metacritic, parent_platforms } =
-    game;
+  const { name, background_image, rating_top, metacritic } = game;
 
-  useEffect(() => {
-    if (!background_image) return;
+  // useEffect(() => {
+  //   if (!background_image) return;
 
-    setIsLoaded(true);
-  }, [background_image]);
+  //   setIsLoaded(true);
+  // }, [background_image]);
 
   return (
-    <Card maxW={300} borderRadius={10} variant="filled" overflow="hidden">
-      <Skeleton isLoaded={isLoaded}>
-        <Image
-          objectFit="cover"
-          src={background_image}
-          alt="Green double couch with wooden legs"
-        />
-        <CardBody>
-          <VStack align="left">
-            <HStack justify="space-between">
-              <Platforms platforms={parent_platforms} />
-              <Badge
-                colorScheme="green"
-                fontWeight="bold"
-                fontSize="md"
-                px={2}
-                borderRadius="md"
-              >
-                {metacritic}
-              </Badge>
-            </HStack>
-            <Heading fontSize={25}>
-              {name}
-              <RatingIcon rating={rating_top} />
-            </Heading>
-          </VStack>
-        </CardBody>
-      </Skeleton>
+    <Card borderRadius={10} overflow="hidden">
+      {/* <Skeleton isLoaded={isLoaded}> */}
+      <Image
+        objectFit="cover"
+        src={background_image}
+        alt="Green double couch with wooden legs"
+      />
+      <CardBody>
+        {/* <VStack align="left"> */}
+        {/* <HStack justify="space-between"> */}
+        {/* <Platforms platforms={parent_platforms} /> */}
+        {/* <Badge
+          colorScheme="green"
+          fontWeight="bold"
+          fontSize="md"
+          px={2}
+          borderRadius="md"
+        >
+          {metacritic}
+        </Badge> */}
+        {/* </HStack> */}
+        <Heading fontSize="2xl">
+          {name}
+          {/* <RatingIcon rating={rating_top} /> */}
+        </Heading>
+        {/* </VStack> */}
+      </CardBody>
+      {/* </Skeleton> */}
     </Card>
   );
 };
