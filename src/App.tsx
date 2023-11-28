@@ -3,41 +3,18 @@ import { useEffect, useState } from "react";
 import { CanceledError } from "./services/api-client";
 import gamesService from "./services/games-service";
 
-import {
-  VStack,
-  HStack,
-  Box,
-  useColorMode,
-  Grid,
-  GridItem,
-  Show,
-} from "@chakra-ui/react";
+import { useColorMode, Grid, GridItem, Show } from "@chakra-ui/react";
 import { Game } from "./types/games";
 import { Genre } from "./types/genres";
 
 import NavBar from "./components/header/NavBar";
 import Genres from "./components/genres/Genres";
-import GamesContainer from "./components/games/GamesContainer";
+import GameGrid from "./components/games/GameGrid";
 import genresService from "./services/genres-service";
 
 function App() {
-  const [games, setGames] = useState<Game[]>([]);
   const [genres, setGenres] = useState<Genre[]>([]);
   const [selectedGenre, setSelectedGenre] = useState<Genre>();
-
-  const { colorMode, toggleColorMode } = useColorMode();
-
-  console.log({ colorMode, toggleColorMode });
-
-  useEffect(() => {
-    const { request, cancel } = gamesService.getAllGames();
-
-    request
-      .then((res) => setGames(res.data.results))
-      .catch((err) => processError(err));
-
-    return () => cancel();
-  }, []);
 
   useEffect(() => {
     const { request, cancel } = genresService.getAllGenres();
@@ -49,17 +26,17 @@ function App() {
     return () => cancel();
   }, []);
 
-  useEffect(() => {
-    const { request, cancel } = selectedGenre
-      ? gamesService.getGamesByGenre(selectedGenre.slug)
-      : gamesService.getAllGames();
+  // useEffect(() => {
+  //   const { request, cancel } = selectedGenre
+  //     ? gamesService.getGamesByGenre(selectedGenre.slug)
+  //     : gamesService.getAllGames();
 
-    request
-      .then((res) => setGames(res.data.results))
-      .catch((err) => processError(err));
+  //   request
+  //     .then((res) => setGames(res.data.results))
+  //     .catch((err) => processError(err));
 
-    return () => cancel();
-  }, [selectedGenre]);
+  //   return () => cancel();
+  // }, [selectedGenre]);
 
   const onSelectGenre = ({ id, name, slug, image_background }: Genre) =>
     setSelectedGenre({ id, name, slug, image_background });
@@ -82,25 +59,10 @@ function App() {
         <Show above="lg">
           <GridItem area="aside">Aside</GridItem>
         </Show>
-        <GridItem area="main">Main</GridItem>
+        <GridItem area="main">
+          <GameGrid />
+        </GridItem>
       </Grid>
-      {/* <VStack pl={5}>
-        <HStack align="flex-start" width="100%">
-          <Box flex={1}>
-            <Genres
-              selectedGenre={selectedGenre}
-              genres={genres}
-              onGenreClick={onSelectGenre}
-            />
-          </Box>
-          <Box flex={7}>
-            <GamesContainer
-              selectedGenre={selectedGenre ? selectedGenre.name : ""}
-              games={games}
-            />
-          </Box>
-        </HStack>
-      </VStack> */}
     </>
   );
 }

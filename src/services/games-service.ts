@@ -1,11 +1,12 @@
 import apiClient from "./api-client";
 
+import { FetchGamesResponse } from "../types/games";
+
 class GamesService {
   getAllGames() {
     const controller = new AbortController();
-    const request = apiClient.get(`/api/games`, {
+    const request = apiClient.get<FetchGamesResponse>(`/games`, {
       params: {
-        key: import.meta.env.VITE_RAWG_API_KEY,
         page: 1,
         page_size: 50,
       },
@@ -18,9 +19,8 @@ class GamesService {
   getGamesByGenre(genre: string) {
     const controller = new AbortController();
 
-    const request = apiClient.get(`/api/games`, {
+    const request = apiClient.get(`/games`, {
       params: {
-        key: import.meta.env.VITE_RAWG_API_KEY,
         genres: genre,
       },
       signal: controller.signal,

@@ -8,3 +8,8 @@ export interface Game {
   rating_top: number;
   parent_platforms: Platform[];
 }
+
+export interface FetchGamesResponse {
+  count: number;
+  results: Game[];
+}
