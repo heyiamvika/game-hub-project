@@ -13,6 +13,8 @@ import RatingIcon from "./RatingIcon";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 
+import getCroppedImageUrl from "../../services/image-url";
+
 interface Props {
   game: Game;
 }
@@ -34,7 +36,7 @@ const GameCard = ({ game }: Props) => {
       {/* <Skeleton isLoaded={isLoaded}> */}
       <Image
         objectFit="cover"
-        src={background_image}
+        src={getCroppedImageUrl(background_image)}
         alt="Green double couch with wooden legs"
       />
       <CardBody>
