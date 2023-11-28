@@ -14,21 +14,21 @@ interface Props {
 }
 
 const GamesContainer = ({ selectedGenre, games }: Props) => {
-  const [filteredGames, setFilteredGames] = useState<Game[]>();
+  const [filteredGames, setFilteredGames] = useState<Game[] | null>(null);
 
-  const items = uniqBy(
+  const menuItems = uniqBy(
     flatten(games.map((game) => game.parent_platforms)),
     "platform[id]"
   );
 
   const onPlatformsMenuSelect = (selectedPlatform: Platform) => {
-    const filteredGames = games.filter((game) =>
+    const newFilteredGames = games.filter((game) =>
       game.parent_platforms.find(
         ({ platform }) => platform.name === selectedPlatform.platform.name
       )
     );
 
-    setFilteredGames(filteredGames);
+    setFilteredGames(newFilteredGames);
   };
 
   return (
@@ -38,7 +38,7 @@ const GamesContainer = ({ selectedGenre, games }: Props) => {
       }Games`}</Heading>
       <GeneralMenu
         title="Platforms"
-        items={items}
+        items={menuItems}
         onSelect={onPlatformsMenuSelect}
       />
       <Games games={filteredGames || games} />

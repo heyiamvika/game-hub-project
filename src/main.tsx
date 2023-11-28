@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
 import {
   ChakraProvider,
   extendTheme,
   type ThemeConfig,
   ColorModeScript,
 } from "@chakra-ui/react";
+
+import App from "./App.tsx";
 
 const config: ThemeConfig = {
   initialColorMode: "dark",

@@ -65,7 +65,7 @@ function App() {
     <>
       <VStack pl={5}>
         <Header onSearch={onSearch} />
-        <HStack align="flex-start">
+        <HStack align="flex-start" width="100%">
           <Box flex={1}>
             <Genres
               selectedGenre={selectedGenre}
