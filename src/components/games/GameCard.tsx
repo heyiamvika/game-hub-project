@@ -3,17 +3,15 @@ import {
   Card,
   CardBody,
   Image,
-  Badge,
   Heading,
-  HStack,
-  VStack,
   Skeleton,
-  Text,
+  HStack,
 } from "@chakra-ui/react";
 import {} from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
 import RatingIcon from "./RatingIcon";
 import PlatformIconList from "./PlatformIconList";
+import CriticScore from "./CriticScore";
 
 interface Props {
   game: Game;
@@ -40,24 +38,16 @@ const GameCard = ({ game }: Props) => {
         alt="Green double couch with wooden legs"
       />
       <CardBody>
-        {/* <VStack align="left"> */}
-        {/* <HStack justify="space-between"> */}
-        {/* <Badge
-          colorScheme="green"
-          fontWeight="bold"
-          fontSize="md"
-          px={2}
-          borderRadius="md"
-        >
-          {metacritic}
-        </Badge> */}
-        {/* </HStack> */}
         <Heading fontSize="2xl">
           {name}
           {/* <RatingIcon rating={rating_top} /> */}
         </Heading>
-        <PlatformIconList platforms={parent_platforms.map((p) => p.platform)} />
-        {/* </VStack> */}
+        <HStack justifyContent="space-between">
+          <PlatformIconList
+            platforms={parent_platforms.map((p) => p.platform)}
+          />
+          <CriticScore score={metacritic} />
+        </HStack>
       </CardBody>
       {/* </Skeleton> */}
     </Card>
