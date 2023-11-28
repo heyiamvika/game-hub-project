@@ -5,10 +5,8 @@ import { useEffect, useState } from "react";
 import GeneralMenu from "./GeneralMenu";
 import Games from "./Games";
 
-import { Game, FetchGamesResponse } from "../../hooks/useGames";
-import { Platform } from "../../types/platforms";
+import { Game } from "../../hooks/useGames";
 
-import gamesService from "../../services/games-service";
 import useGames from "../../hooks/useGames";
 import GameCard from "./GameCard";
 

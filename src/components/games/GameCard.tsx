@@ -8,11 +8,12 @@ import {
   HStack,
   VStack,
   Skeleton,
+  Text,
 } from "@chakra-ui/react";
 import {} from "@chakra-ui/icons";
 import { useEffect, useState } from "react";
 import RatingIcon from "./RatingIcon";
-import Platforms from "./Platforms";
+import PlatformIconList from "./PlatformIconList";
 
 interface Props {
   game: Game;
@@ -21,7 +22,8 @@ interface Props {
 const GameCard = ({ game }: Props) => {
   // const [isLoaded, setIsLoaded] = useState(false);
 
-  const { name, background_image, rating_top, metacritic } = game;
+  const { name, background_image, rating_top, metacritic, parent_platforms } =
+    game;
 
   // useEffect(() => {
   //   if (!background_image) return;
@@ -40,7 +42,6 @@ const GameCard = ({ game }: Props) => {
       <CardBody>
         {/* <VStack align="left"> */}
         {/* <HStack justify="space-between"> */}
-        {/* <Platforms platforms={parent_platforms} /> */}
         {/* <Badge
           colorScheme="green"
           fontWeight="bold"
@@ -55,6 +56,7 @@ const GameCard = ({ game }: Props) => {
           {name}
           {/* <RatingIcon rating={rating_top} /> */}
         </Heading>
+        <PlatformIconList platforms={parent_platforms.map((p) => p.platform)} />
         {/* </VStack> */}
       </CardBody>
       {/* </Skeleton> */}
