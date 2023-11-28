@@ -1,14 +1,5 @@
 import { Game } from "../../hooks/useGames";
-import {
-  Card,
-  CardBody,
-  Image,
-  Heading,
-  Skeleton,
-  HStack,
-} from "@chakra-ui/react";
-import {} from "@chakra-ui/icons";
-import { useEffect, useState } from "react";
+import { Card, CardBody, Image, Heading, HStack } from "@chakra-ui/react";
 import RatingIcon from "./RatingIcon";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
@@ -20,20 +11,11 @@ interface Props {
 }
 
 const GameCard = ({ game }: Props) => {
-  // const [isLoaded, setIsLoaded] = useState(false);
-
   const { name, background_image, rating_top, metacritic, parent_platforms } =
     game;
 
-  // useEffect(() => {
-  //   if (!background_image) return;
-
-  //   setIsLoaded(true);
-  // }, [background_image]);
-
   return (
-    <Card borderRadius={10} overflow="hidden">
-      {/* <Skeleton isLoaded={isLoaded}> */}
+    <Card width="300px" borderRadius={10} overflow="hidden">
       <Image
         objectFit="cover"
         src={getCroppedImageUrl(background_image)}
@@ -51,7 +33,6 @@ const GameCard = ({ game }: Props) => {
           <CriticScore score={metacritic} />
         </HStack>
       </CardBody>
-      {/* </Skeleton> */}
     </Card>
   );
 };
