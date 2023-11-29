@@ -22,16 +22,16 @@ const GameCard = ({ game }: Props) => {
         alt="Green double couch with wooden legs"
       />
       <CardBody>
-        <Heading fontSize="2xl">
-          {name}
-          {/* <RatingIcon rating={rating_top} /> */}
-        </Heading>
-        <HStack justifyContent="space-between">
+        <HStack justifyContent="space-between" marginBottom={3}>
           <PlatformIconList
             platforms={parent_platforms.map((p) => p.platform)}
           />
           <CriticScore score={metacritic} />
         </HStack>
+        <Heading fontSize="2xl">
+          {name}
+          {/* <RatingIcon rating={rating_top} /> */}
+        </Heading>
       </CardBody>
     </Card>
   );
