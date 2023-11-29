@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Box, Flex, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Show } from "@chakra-ui/react";
 import { Genre } from "./hooks/useGenres";
 
 import NavBar from "./components/header/NavBar";

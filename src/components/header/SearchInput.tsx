@@ -5,21 +5,19 @@ interface Props {
   onSearch: (value: string) => void;
 }
 
-const Search = ({ onSearch }: Props) => {
+const SearchInput = ({ onSearch }: Props) => {
   return (
     <InputGroup>
       <InputLeftElement pointerEvents="none">
         <SearchIcon />
       </InputLeftElement>
       <Input
-        placeholder="Search games"
-        size="md"
-        borderRadius={50}
+        placeholder="Search games..."
+        borderRadius={20}
         onChange={(e) => onSearch(e.target.value)}
       />
-      ;
     </InputGroup>
   );
 };
 
-export default Search;
+export default SearchInput;
