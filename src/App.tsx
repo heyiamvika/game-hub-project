@@ -1,9 +1,6 @@
 import { useState } from "react";
 
-import { CanceledError } from "./services/api-client";
-
 import { Grid, GridItem, Show } from "@chakra-ui/react";
-import { Game } from "./hooks/useGames";
 import { Genre } from "./hooks/useGenres";
 
 import NavBar from "./components/header/NavBar";
@@ -11,22 +8,7 @@ import GenreList from "./components/genres/GenreList";
 import GameGrid from "./components/games/GameGrid";
 
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<Genre>();
-
-  // useEffect(() => {
-  //   const { request, cancel } = selectedGenre
-  //     ? gamesService.getGamesByGenre(selectedGenre.slug)
-  //     : gamesService.getAllGames();
-
-  //   request
-  //     .then((res) => setGames(res.data.results))
-  //     .catch((err) => processError(err));
-
-  //   return () => cancel();
-  // }, [selectedGenre]);
-
-  const onSelectGenre = ({ id, name, slug, image_background }: Genre) =>
-    setSelectedGenre({ id, name, slug, image_background });
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
 
   const onSearch = (value: string) => {
     console.log(value);
@@ -49,11 +31,11 @@ function App() {
         </GridItem>
         <Show above="lg">
           <GridItem area="aside" paddingX={5}>
-            <GenreList />
+            <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
           </GridItem>
         </Show>
         <GridItem area="main">
-          <GameGrid />
+          <GameGrid selectedGenre={selectedGenre} />
         </GridItem>
       </Grid>
     </>
