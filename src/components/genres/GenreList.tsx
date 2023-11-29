@@ -1,7 +1,16 @@
-import { Heading, VStack } from "@chakra-ui/react";
+import {
+  HStack,
+  Heading,
+  List,
+  ListItem,
+  VStack,
+  Image,
+  Text,
+} from "@chakra-ui/react";
 import GenreItem from "./GenreItem";
 
 import useGenres from "../../hooks/useGenres";
+import getCroppedImageUrl from "../../services/image-url";
 
 interface Props {
   // selectedGenre: Genre | undefined;
@@ -25,11 +34,20 @@ const GenreList = ({}: Props) => {
   // });
 
   return (
-    <ul>
+    <List>
       {data.map((genre) => (
-        <li key={genre.id}>{genre.name}</li>
+        <ListItem key={genre.id} paddingY="5px">
+          <HStack>
+            <Image
+              boxSize="32px"
+              borderRadius={8}
+              src={getCroppedImageUrl(genre.image_background)}
+            />
+            <Text fontSize="lg">{genre.name}</Text>
+          </HStack>
+        </ListItem>
       ))}
-    </ul>
+    </List>
     // <VStack hideBelow="md" alignItems="flex-start">
     //   <Heading fontSize={24} mt={5}>
     //     Genres
