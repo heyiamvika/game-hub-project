@@ -7,9 +7,13 @@ import NavBar from "./components/header/NavBar";
 import GenreList from "./components/genres/GenreList";
 import GameGrid from "./components/games/GameGrid";
 import PlatformSelector from "./components/games/PlatformSelector";
+import { Platform } from "./hooks/usePlatforms";
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+    null
+  );
 
   const onSearch = (value: string) => {
     console.log(value);
@@ -39,8 +43,14 @@ function App() {
           </GridItem>
         </Show>
         <GridItem area="main">
-          <PlatformSelector />
-          <GameGrid selectedGenre={selectedGenre} />
+          <PlatformSelector
+            selectedPlatform={selectedPlatform}
+            onSelectPlatform={(platform) => setSelectedPlatform(platform)}
+          />
+          <GameGrid
+            selectedPlatform={selectedPlatform}
+            selectedGenre={selectedGenre}
+          />
         </GridItem>
       </Grid>
     </>
